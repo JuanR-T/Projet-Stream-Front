@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-
+// apzeoi  aze
 const Section = styled.section`
 display:flex;
 justify-content:center;
