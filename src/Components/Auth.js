@@ -1,5 +1,6 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components';
+import Axios from 'axios';
 
 // apzeoi  aze
 const Section = styled.section`
@@ -23,7 +24,7 @@ align-items:center;
 
 
 `;
-const Title = styled.p`
+const Title = styled.h1`
 margin:0px;
 
 `;
@@ -37,7 +38,7 @@ padding:10px;
 margin:5px;
 
 `;
-const Button = styled.a`
+const Button = styled.button`
 background-color:white;
 font-size:20px;
 margin:10px;
@@ -52,18 +53,42 @@ border-radius:8px;
 text-decoration:none;
 `;
 function Auth() {
+    const url="http://localhost:3001/users"
+    const[data, setData] = useState({
+        mail:"",
+        password:""
+    })
+
+    function submit(e){
+        e.preventDefault();
+        Axios.post(url,{
+            username: data.mail,
+            password: data.password
+        })
+        .then(res=>{
+            console.log(res.data)
+        })
+    }
+
+    function handle(e){
+        const newdata={ ...data }
+        newdata[e.target.id] = e.target.value
+        setData(newdata)
+        console.log(newdata)
+    }
     return (
         <Section>
             <ContentAccount>
-                <Left>
-                    <Title><h1>Rejoignez-nous</h1></Title>
-                    <Mail placeholder="Adresse mail"></Mail>
-                    <Password placeholder="Mot de passe"></Password>
-                    <Button><span>S'inscrire</span></Button>
+                <Left onSubmit={(e)=> submit(e)}>
+                    <Title ><h1>Rejoignez-nous</h1></Title>
+                    <Mail onChange={(e)=>handle(e)} id="mail" value ={data.mail} placeholder="Adresse mail" type="text"></Mail>
+                    <Password onChange={(e)=>handle(e)} id="password" value ={data.password} placeholder="Mot de passe" type="password"></Password>
+                    <Button ><span>S'inscrire</span></Button>
                 </Left>
             </ContentAccount>
         </Section>
     );
 };
+
 
 export default Auth
