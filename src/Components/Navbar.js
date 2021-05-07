@@ -7,6 +7,7 @@ const NavbarContainer = styled.div`
 // background-color:green;
 position:sticky;
 height:80px;
+display:flex;
 
 `;
 const NavbarWrap = styled.div`
@@ -18,9 +19,12 @@ height:100%;
 
 `;
 const Logo = styled.div`
-width:128px;
-height:22px;
+width:50px;
+height:50px;
 background-image: url(${LogoImg});
+background-size:cover;
+padding:27px;
+margin:12px;
 
 `;
 const Nav = styled.nav`
@@ -51,19 +55,19 @@ const Input = styled.input`
 const Navbar = () => {
     return (
         <NavbarContainer>
-            <NavbarWrap>
                 <Logo></Logo>
+            <NavbarWrap>
                 <Nav>
                     <Navlink to ="/">Accueil</Navlink>
                     <Navlink to ="/Streams">Streams</Navlink>
                     <Navlink to ="/Auth">Compte</Navlink>
                     <Navlink to ="/Games">Jeux</Navlink>
+                    <Navlink to ="/Login">Login</Navlink>
                 </Nav>
                 <SearchBar>
                     <Input type="text" placeholder="Streamers, jeux..."/>
                 </SearchBar>
-                <Button>Connexion</Button>
-                <Button>Inscription</Button>
+                
             </NavbarWrap>
         </NavbarContainer>
     );
